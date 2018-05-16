@@ -1,7 +1,7 @@
 
 	<h1> New Person </h1>
   
-	<%= form_tag(person_create_path, :method => "post") do %>
+	<%= form_tag(persons_create_path, :method => "post") do %>
 	  <%= label_tag(:first_name, "First Name:") %>
 	  <%= text_field_tag(:first_name) %>
 	  <%= label_tag(:last_name, "Last Name:") %>
@@ -11,7 +11,11 @@
 	  <%= label_tag(:birth_date, "Birth Date:") %>
 	  <%= date_field_tag(:birth_date) %>
 	  <%= label_tag(:role, "Role:") %>
-	  <%= radio_button_tag(:role, "actor")%> <%= label_tag(:role_director, "Director") %>
-	  <%= radio_button_tag(:role, "director") %> <%= label_tag(:role_actor, "Actor") %>
+	  <%= label_tag(:role_director) do %>
+		<%= radio_button_tag(:role, "actor") %> Actor	 
+	  <% end %>
+	  <%= label_tag(:role_actor, "Director") do %>
+		<%= radio_button_tag(:role, "director") %> Director
+	  <% end %>
 	  <%= submit_tag("Submit") %>
 	<% end %>
