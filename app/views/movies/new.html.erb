@@ -1,5 +1,35 @@
 <h1>New Movie</h1>
 
-<%= render 'form', movie: @movie %>
+<%= form_for @movie, url: movies_path, method: "post" do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :movie_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :movie_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, id: :movie_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :director_id %>
+    <%= form.collection_select :director_id, Director.order(:last_name), :id, :full_name, include_blank: false%>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_date %>
+    <%= form.date_select :release_date, id: :movie_release_date %>
+  </div>
+
+ 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', movies_path %>
